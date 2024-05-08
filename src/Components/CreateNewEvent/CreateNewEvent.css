@@ -1,0 +1,101 @@
+/* CreateNewEvent.css */
+
+/* Overall styling */
+
+  /* Section styling */
+  section {
+    margin-bottom: 20px;
+    display: flex;
+    flex-direction: column;
+  }
+  
+  /* Header styling */
+  .header {
+    color:darkslategray;
+    font-size: 30px;
+    
+    margin: auto;
+    margin-bottom: 30px;
+  }
+  
+  /* Input container styling */
+  .input-container {
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-end;
+   
+    margin-top: 5px;
+    
+  }
+  
+  /* Input styling */
+  input[type="text"],
+  select,
+  textarea {
+    width: 30%;
+    padding: 10px;
+    
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 16px;
+  }
+  #Eventname{
+    margin-left: 100px;
+  }
+  #myDropdown{
+    margin-left: 60px;
+  }
+  #info{
+    margin-left: 90px;
+    
+  }
+  #myLocationDropdown{
+    margin-left: 120px;
+  }
+  #StartDate,#StartTime,#EndTime{
+    width: 15%;
+   
+  }
+  #StartDate{
+    margin-left: 350px;
+  }
+  .Datetime span{
+    margin-right: 170px;
+    display: inline-block;
+  }
+  /* Button styling */
+  button {
+    background-color: #4caf50;
+    color: white;
+    padding: 10px 20px;
+    border:black;
+    border-radius: 3px;
+    cursor: pointer;
+    font-size: 16px;
+    
+  }
+  #bs{
+    margin-left: 700px;
+  }
+  /* Button hover effect */
+  button:hover {
+    background-color: #45a049;
+  }
+  
+  /* Button disabled styling */
+  button:disabled {
+    background-color: #ccc;
+    cursor: not-allowed;
+
+  }
+  
+  /* Label styling */
+  label {
+    font-weight: bold;
+    margin-left: 400px;
+    display:inline-block;
+    
+  }
+  #EventCategory{
+    margin-left:0 ;
+  }
