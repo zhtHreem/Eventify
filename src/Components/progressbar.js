@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { TiLink } from 'react-icons/ti';
 import "./progressbar.css"
 import { BrowserRouter , Router, Route,  Routes ,Link,useNavigate} from 'react-router-dom';
-
+import { Container } from '@mui/material';
 const ProgressBar = ({progress,handleProgressChange,prev,next}) => {
   /*const [stage, setStage] = useState(progress); */// Initial stage is 0
   const navigate=useNavigate();
@@ -29,6 +29,7 @@ const ProgressBar = ({progress,handleProgressChange,prev,next}) => {
 
   return (
     <div>
+    
       <div className="progress-bar">
         {stages.map((stageInfo, index) => (
           <div key={index} className={`stage ${index <= progress ? 'active' : ''}`}>
@@ -47,7 +48,9 @@ const ProgressBar = ({progress,handleProgressChange,prev,next}) => {
       <button onClick={handleNext} disabled={progress === stages.length - 1}>
           Next
         </button>
+        
     </div>
+
   );
 };
 

@@ -1,131 +1,236 @@
 import React, { useState, useEffect } from "react";
-import "./CreateNewEvent.css";
-import { BrowserRouter , Router, Route,  Routes ,Link,useNavigate} from 'react-router-dom';
-// navigate('/banner', { state: { progress: progress + 1, handleProgressChange: handleProgressChange } });
+import { Snackbar, Alert } from "@mui/material";
 
-function CreateNewEvent({navigate,handleProgressChange,progress}) {
-    const [name, setName] = useState('');
-    const [options, setOptions] = useState([]);
-    const [selectedOption, setSelectedOption] = useState('');
-    const [StartDate, setStartDate] = useState('');
-    const [EndTime, setEndTime] = useState('');
-    const [StartTime, setStartTime] = useState('');
-    const [locations, setLocations] = useState([]);
-    const [selectedLocation, setSelectedLocation] = useState('');
-    const[info,setInfo]=useState('');
-    //const navigate = useNavigate();
+import {
+  TextField,
+  FormControl,
+  InputLabel,
+  Select,
+  MenuItem,
+  Button,
+  TextareaAutosize,
+  Grid
+} from "@mui/material";
+// import "./CreateNewEvent.css";
+import { useNavigate } from "react-router-dom";
 
-    const handleNameChange = (event) => {
-        setName(event.target.value);
-    }
-    const handleCategoryChange = (event) => {
-        setSelectedOption(event.target.value);
-    }
-    const handleStartDate = (event) => {
-        setStartDate(event.target.value);
-    }
-    const handleStartTime = (event) => {
-        setStartTime(event.target.value);
-    }  
-    const handleEndTime = (event) => {
-        setEndTime(event.target.value);
-    }
-    const handleLocationChange = (event) => {
-        setSelectedLocation(event.target.value);
-    }
-    const handleInfoChange=(event)=>{
-        setInfo(event.target.value);
-    }
-    // Assume you have a function to fetch options from the database
-    useEffect(() => {
-        // Fetch options from the database (replace this with your actual fetching logic)
-        const fetchedOptions = ["Option 1", "Option 2", "Option 3"];
-        setOptions(fetchedOptions);
-    }, []);
+function CreateNewEvent({ handleProgressChange, progress }) {
+  const [openSnackbar, setOpenSnackbar] = useState(false);
+const [snackbarMessage, setSnackbarMessage] = useState("");
 
-    useEffect(() => {
-        const fetchedLocations = ["Location 1", "Location 2", "Location 3"];
-        setLocations(fetchedLocations);
-    }, []);
+  const navigate = useNavigate();
 
-    const handleSubmit = (event) => {
-        event.preventDefault();
-        
-        // Logic to handle form submission
-        console.log("Form submitted:");
-        console.log("Event Title:", name);
-        console.log("Event Category:", selectedOption);
-        console.log("Start Date:", StartDate);
-        console.log("Start Time:", StartTime);
-        console.log("End Time:", EndTime);
-        console.log("Location:", selectedLocation);
-        console.log("Additional Information:", info);
-        handleProgressChange(progress+1);
-        navigate('/banner', { state: { progress: progress + 1} });
+  const [name, setName] = useState("");
+  const [options, setOptions] = useState(["Concerts", "Music Festivals", "Music Workshops","DJ Nights","Art Exhibitions","Cultural Festivals","Marathon","Fitness Workshops","Children's Workshop","Tech Conferences","Stand-up Comedy","Magic Shows","City Tours","Cultural Experience"]);
+  const [selectedOption, setSelectedOption] = useState("");
+  const [startDate, setStartDate] = useState("");
+  const [endTime, setEndTime] = useState("");
+  const [startTime, setStartTime] = useState("");
+  const [locations, setLocations] = useState(["Karachi", "Lahore", "Islamabad", "Rawalpindi", "Faisalabad", "Multan", "Peshawar", "Quetta", "Gujranwala", "Sialkot"]
+);
+  const [selectedLocation, setSelectedLocation] = useState("");
+  const [info, setInfo] = useState("");
 
-        
-       
-    };
+  useEffect(() => {
+ 
+  }, []);
 
-    return (
-      <div>
-        <form onSubmit={handleSubmit}>
-         <section>
-            <h3 className="header">Event Details</h3>
-             <p>
-              <label htmlFor="Eventname">Event title:</label>
-              <input type="text" id="Eventname"  placeholder="title" value={name}   onChange={handleNameChange} autoComplete="on" autoFocus/> 
-              </p>
-            <p>
-              <label htmlFor="EventCategory">Event Category:</label>     
-              <select id="myDropdown" value={selectedOption} onChange={handleCategoryChange}>
-                {options.map(option => (
-                  <option key={option} value={option}>{option}</option>
-                ))}
-              </select>
-            </p>
-         </section>
+  useEffect(() => {
+   
+    //localStorage.removeItem('eventData')
+  }, []);
 
-         <section>
-            <h3 className="header">Date & Time</h3>
-            
-            <label htmlFor="StartDate" className="Datetime">
-               <span>Start Date</span>
-                <span>Start Time</span>
-                <span>End Time</span>
-                </label>
+  const handleNameChange = (event) => {
+    setName(event.target.value);
+  };
+  const handleCategoryChange = (event) => {
+    setSelectedOption(event.target.value);
+  };
+  const handleStartDate = (event) => {
+    setStartDate(event.target.value);
+  };
+  const handleStartTime = (event) => {
+    setStartTime(event.target.value);
+  };
+  const handleEndTime = (event) => {
+    setEndTime(event.target.value);
+  };
+  const handleLocationChange = (event) => {
+    setSelectedLocation(event.target.value);
+  };
+  const handleInfoChange = (event) => {
+    setInfo(event.target.value);
+  };
 
-            <p>
-              <input type="text" id="StartDate"  placeholder="Start Date" value={StartDate}   onChange={handleStartDate} autoComplete="on" autoFocus/>
-              <input type="text" id="StartTime"  placeholder="12:00 AM" value={StartTime}   onChange={handleStartTime} autoComplete="on" autoFocus/>
-              <input type="text" id="EndTime"  placeholder="12:00 AM" value={EndTime}   onChange={handleEndTime} autoComplete="on" autoFocus/> 
-            </p>
-         </section>
-
-         <section>
-            <h3 className="header">Location</h3>
-            <p>
-              <label htmlFor="Location">Venue:</label>     
-              <select id="myLocationDropdown" value={selectedLocation} onChange={handleLocationChange}>
-                {locations.map(location => (
-                  <option key={location} value={location}>{location}</option>
-                ))}
-              </select>
-            </p>
-         </section>
-
-         <section>
-            <h3 className="header">Additional Information</h3>
-            <p>
-                <label htmlFor="info">Description:</label> 
-                <textarea id="info" value={info}  placeholder="Speciality about your event" onChange={handleInfoChange}/>
-            </p>
-         </section>
-
-         <button id="bs"htmlFor="bs" type="submit" onChange={handleSubmit} >Submit</button>
-         </form>
-      </div>
-    );
-  }
   
-  export default CreateNewEvent;
+   
+  
+  const handleSubmit = async (event) => {
+    event.preventDefault();
+   
+    if (!name || !selectedOption || !startDate || !startTime || !endTime || !selectedLocation || !info) {
+      setSnackbarMessage('All fields are required');
+      setOpenSnackbar(true);
+      return;
+    }
+     // Check if start time is before end time
+    if (startTime >= endTime) {
+      setSnackbarMessage("Start time must be before end time");
+      setOpenSnackbar(true);
+      return;
+    }
+    try {
+      const response = await fetch("http://localhost:3500/events", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          name,
+          selectedOption,
+          startDate,
+          startTime,
+          endTime,
+          selectedLocation,
+          info,
+        }),
+      });
+
+      if (response.ok) {
+        console.log("Event created successfully");
+        // Update progress and navigate
+        const eventData = await response.json();
+        const eventId = eventData; // Assuming the response contains the new event'
+        console.log("sgjajsg",eventData)
+        handleProgressChange(progress + 1);
+        navigate("/addticket", {state:{eventId}});
+       // navigate(`/addticket/${eventData}`);
+      } else {
+        console.error("Failed to create event");
+      }
+    } catch (error) {
+      console.error("Error creating event:", error);
+    }
+  };
+
+  return (
+    <div>
+      <Snackbar
+        open={openSnackbar}
+        autoHideDuration={6000} // Adjust as needed
+        onClose={() => setOpenSnackbar(false)}
+>
+        <Alert severity="error" onClose={() => setOpenSnackbar(false)}>
+          {snackbarMessage}
+        </Alert>
+     </Snackbar>
+
+      <form onSubmit={handleSubmit}>
+        <Grid container spacing={2}>
+          <Grid item xs={12} sm={6}>
+            <TextField
+            required
+              label="Event Title"
+              variant="outlined"
+              fullWidth
+              value={name}
+              onChange={handleNameChange}
+            />
+          </Grid>
+          <Grid item xs={12} sm={6}>
+            <FormControl variant="outlined" fullWidth>
+              <InputLabel id="demo-simple-select-outlined-label">Event Category</InputLabel>
+              
+              <Select
+                labelId="demo-simple-select-outlined-label"
+                id="demo-simple-select-outlined"
+                value={selectedOption}
+                onChange={handleCategoryChange}
+                label="Event Category"
+              >
+                {options.map((option) => (
+                  <MenuItem key={option} value={option}>
+                    {option}
+                  </MenuItem>
+                ))}
+              </Select>
+            </FormControl>
+          </Grid>
+          <Grid item xs={12} sm={4}>
+            <TextField
+              required
+              variant="outlined"
+              fullWidth
+              type="date"
+              value={startDate}
+              onChange={handleStartDate}
+            />
+          </Grid>
+          <Grid item xs={12} sm={4}>
+            <TextField
+            required
+              label="Start Time"
+              variant="outlined"
+              fullWidth
+              type="time"
+              value={startTime}
+              onChange={handleStartTime}
+            />
+          </Grid>
+          <Grid item xs={12} sm={4}>
+            <TextField
+            required
+              label="End Time"
+              variant="outlined"
+              fullWidth
+              type="time"
+              value={endTime}
+              onChange={handleEndTime}
+            />
+          </Grid>
+          <Grid item xs={12} sm={6}>
+            <FormControl variant="outlined" fullWidth>
+              <InputLabel id="demo-simple-select-outlined-label">Venue</InputLabel>
+              <Select
+                labelId="demo-simple-select-outlined-label"
+                id="demo-simple-select-outlined"
+                value={selectedLocation}
+                onChange={handleLocationChange}
+                label="Venue"
+              >
+                {locations.map((location) => (
+                  <MenuItem key={location} value={location}>
+                    {location}
+                  </MenuItem>
+                ))}
+              </Select>
+            </FormControl>
+          </Grid>
+          <Grid item xs={12} sm={6}>
+            <TextareaAutosize
+            required
+              aria-label="minimum height"
+              rowsMin={3}
+              placeholder="Additional Information"
+              style={{ width: "100%" }}
+              value={info}
+              onChange={handleInfoChange}
+            />
+          </Grid>
+          <Grid item xs={12}>
+            <Button
+              variant="contained"
+              color="primary"
+              type="submit"
+              style={{ margin: "8px 0" }}
+            >
+              Submit
+            </Button>
+          </Grid>
+        </Grid>
+      </form>
+    </div>
+  );
+}
+
+export default CreateNewEvent;
