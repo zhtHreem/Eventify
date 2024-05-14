@@ -1,0 +1,70 @@
+/* styles.css */
+
+.container {
+   
+  margin: 0 auto;
+  
+}
+
+
+
+input[type="text"],
+select {
+  padding: 8px;
+  margin-bottom: 10px;
+  margin-left: 100px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  font-size: 16px;
+}
+
+button {
+  margin-left: 15px;
+  padding: 10px 20px;
+  background-color: cadetblue;
+  color: #fff;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 16px;
+}
+
+button[type="submit"] {
+  background-color: darkslategrey;
+  
+}
+
+button[type="button"] {
+  background-color:cadetblue;
+  margin-left: 650px;
+}
+
+button:hover {
+  background-color:lightslategrey;
+  color: black;
+}
+
+button:disabled {
+  background-color: #ccc;
+  cursor: not-allowed;
+}
+
+.ticket-container {
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  padding: 10px;
+  margin-bottom: 10px;
+}
+
+.add{
+  margin-left: 20px;
+  width: 2000px;
+}
+h3{
+  margin-left: 100px;
+}
+h2{
+  margin-left: 50px;
+  
+}
+

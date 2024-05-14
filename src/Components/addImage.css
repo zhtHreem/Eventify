@@ -1,0 +1,35 @@
+#mydiv {
+  max-width: 500px; /* Example: Set maximum width */
+  margin: 0 auto; /* Example: Center the div horizontally */
+  padding: 20px; /* Example: Add padding */
+  border-style: groove;
+  border: 1px solid #ccc; /* Example: Add border */
+}
+
+.AAA {
+  color: #333; /* Example: Set text color */
+  font-size: 24px; /* Example: Set font size */
+  margin-bottom: 20px; /* Example: Add margin to the bottom */
+}
+
+input[type="file"] {
+  margin-bottom: 20px; /* Example: Add margin to the bottom */
+}
+
+img {
+  display: block; /* starts on new line */
+  margin-bottom: 20px; 
+}
+
+button {
+  padding: 10px 20px; /* Example: Add padding */
+  background-color: darkslategrey; /* Example: Set background color */
+  color: #fff; /* Example: Set text color */
+  border:#333; /* Example: Remove border */
+  cursor: pointer; /* Example: Change cursor to pointer */
+}
+
+button:hover {
+  background-color:antiquewhite; /* Example: Change background color on hover */
+  color: black;
+}

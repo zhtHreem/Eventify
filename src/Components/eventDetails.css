@@ -1,0 +1,45 @@
+.container {
+    padding: 20px;
+    font-family: "Poppins", sans-serif;
+    margin-top: 80px; /* Add space from the top of the page */
+}
+
+.event-details {
+    text-align: center; /* Center text */
+}
+
+.event-name {
+    font-size: 28px;
+    font-weight: bold;
+    margin-bottom: 20px; /* Add space below the event name */
+}
+
+.event-info {
+    display: flex;
+    flex-direction: row;
+    align-items: center; /* Align items horizontally */
+    margin-bottom: 15px; /* Add space below each info row */
+    text-align: left; /* Align text to the left */
+}
+
+.info-icon {
+    margin-right: 10px; /* Add space between icon and text */
+}
+
+.info-text {
+    font-size: 16px;
+}
+
+.event-host {
+    font-size: 20px;
+    font-weight: bold;
+    margin-top: 20px; /* Add space above the host title */
+    margin-bottom: 15px; /* Add space below the host title */
+}
+
+.buy-ticket-button {
+    border-radius: 50px;
+    padding: 15px 40px; /* Increase padding for a larger button */
+    margin-top: 30px; /* Add space above the button */
+    font-size: 18px; /* Increase font size for better visibility */
+}
