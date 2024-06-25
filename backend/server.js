@@ -18,14 +18,15 @@ app.use('/uploads', express.static(path.join(__dirname, 'uploads')));
 // Multer Configuration
 const storage = multer.diskStorage({
   destination: function (req, file, cb) {
-    cb(null, 'uploads/'); // You can specify the upload directory here
+    cb(null, '../src/images/'); // You can specify the upload directory here
   },
   filename: function (req, file, cb) {
+    //const uniqueSuffix=Date.now();
     cb(null, file.originalname);
   }
 });
 const upload = multer({ storage: storage });
-
+const uploads=multer({dest:'uploads/'});
 // Connect to MongoDB
 const uri = 'mongodb+srv://admin:123@eventify.dkeujvr.mongodb.net/?retryWrites=true&w=majority&appName=eventify';
 const client = new MongoClient(uri, { useNewUrlParser: true, useUnifiedTopology: true });
@@ -254,8 +255,8 @@ app.post('/events', async (req, res) => {
 // Define a route to handle POST requests to /eventimages
 app.post('/eventimages', upload.single('image'), async (req, res) => {
   try {
-    //const eventId = req.body.eventId; // Extract eventId from request body
-    const eventId = new ObjectId(req.body.eventId);
+    
+    const eventId = req.body.eventId;
     const imageName = req.file.originalname; // Extract image name from uploaded file
 
     const database = client.db('eventify'); // Replace <your-database-name> with your actual database name
@@ -268,6 +269,29 @@ app.post('/eventimages', upload.single('image'), async (req, res) => {
     res.status(201).json({ message: 'Image uploaded successfully', imageId: result.insertedId });
   } catch (error) {
     console.error('Error uploading image:', error);
+    res.status(500).json({ error: 'Internal server error' });
+  }
+});
+
+// Define a route to handle GET requests for retrieving image filename by event ID
+app.get('/eventimages', async (req, res) => {
+  try {
+    const  eventId = req.query.search;
+
+    const database = client.db('eventify');
+    const collection = database.collection('eventimage');
+    console.log(' event:', eventId);
+    // Find the image filename based on the provided event ID
+    const result = await collection.findOne({ eventId });
+    console.log('Fetched image detail:', result); 
+    if (!result) {
+      return res.status(404).json({ error: 'Image not found for the given event ID' });
+    }
+
+    // Return the image filename
+    res.json({ imageName: result.imageName });
+  } catch (error) {
+    console.error('Error retrieving image:', error);
     res.status(500).json({ error: 'Internal server error' });
   }
 });
@@ -290,7 +314,14 @@ app.post('/tickets', async (req, res) => {
   }
 });
 
+
+
+
+
 // Start the server
 app.listen(port, () => {
   console.log(`Server is running on port ${port}`);
 });
+
+
+

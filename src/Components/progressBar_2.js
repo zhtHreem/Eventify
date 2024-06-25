@@ -40,6 +40,11 @@ const ProgressBar_2 = ({progressValue}) => {
       setAddImageColor("#052c99")
       setAddTicketColor('#052c99')
     }
+    if(location.pathname == '/banner'){
+      setStartColor("#052c99")
+      setAddImageColor("#052c99")
+      setAddTicketColor('#052c99')
+    }
     if(location.pathname == '/event'){
       setStartColor("#052c99")
       setAddImageColor("#052c99")
@@ -64,6 +69,12 @@ const ProgressBar_2 = ({progressValue}) => {
             <ConfirmationNumberIcon sx={{fill:addTicketColor}} />
             <Typography sx={{fontFamily:"Poppins",color:addTicketColor}}>Add Tickets</Typography>
             </Container>
+            
+            <Container>
+            <ConfirmationNumberIcon sx={{fill:addTicketColor}} />
+            <Typography sx={{fontFamily:"Poppins",color:addTicketColor}}>Add Image</Typography>
+            </Container>
+
             <Container>
             <GradingIcon sx={{fill:ReviewColor}} />
             <Typography sx={{fontFamily:"Poppins",color:ReviewColor}}>Review</Typography>

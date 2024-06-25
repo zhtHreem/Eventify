@@ -1,11 +1,10 @@
 import React, { useState, useEffect } from 'react';
-import { Typography, Grid, Paper } from '@mui/material';
+
 import AppAppBar from './appbar';
 import Footer from './Footer';
-import Nav from './nav';
-import Testimonials from './testimonals';
+
 import DEvents from './diplayevents';
-import Highlights from './features';
+import { Link } from 'react-router-dom';
 const Homecomp = () => {
     const [events, setEvents] = useState([]);
    
@@ -15,9 +14,17 @@ const Homecomp = () => {
     return (
     <div>  
       <AppAppBar/>
+      <div style={{ position: 'relative', maxWidth: '100%', maxHeight: '100%' }}>
+      
+         <img style={{ width: '100%', height: '100%' }}src={require(`../images/1520110512948.jpg`)} />
+         <div style={{ position: 'absolute', top: '50%', left: '50%', transform: 'translate(-50%, -50%)', textAlign: 'center' }}>
+            <Link to="/createevent">
+               <button>Create New Event</button>
+            </Link>
+          </div>
+      </div>
       <DEvents/>
 
-      <Testimonials/>
       <Footer/>
       </div>  
     );

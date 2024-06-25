@@ -33,10 +33,14 @@ import Feedback from './Components/feedback';
 import Payment from './Components/payment';
 import AboutUs from './Components/AboutUs';
 import EventDetails from './Components/eventDetails';
- 
+
+import EventImage from './Components/eventImage';
+
 const router = createBrowserRouter([
+  
+ 
   {
-    path: "/",
+    path: "/createevent",
     element: <ParentComponent/>,
   },{
     path : "/addImage",
@@ -85,7 +89,7 @@ const router = createBrowserRouter([
     element: <Login/>
   },
   {
-    path:"/homecomp",
+    path:"/",
     element: <Homecomp/>
   },
   
@@ -101,7 +105,10 @@ const router = createBrowserRouter([
     path:"/showevents/:search",
     element : <ShowEvents />,
   },
-
+  {
+    path:"/eventimages/:search",
+    element:<EventImage/>
+  }
   ,{
     path:"/paymentform",
     element:<PaymentForm/>

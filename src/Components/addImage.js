@@ -1,55 +1,29 @@
 import React, { useState } from 'react';
-import { 
-  TextField, 
-  Button, 
-  Grid, 
-  Typography 
-} from '@mui/material';
+import {  Button, Grid, Typography } from '@mui/material';
 import "./addImage.css";
 import { useNavigate } from "react-router-dom";
 
 
-const AddImage = (eventId) => {
+const AddImage = ({eventId}) => {
   const navigate = useNavigate();
   const [selectedFile, setSelectedFile] = useState(null);
   const [previewURL, setPreviewURL] = useState('');
 
   const handleFileChange = (event) => {
+    console.log(event.target.files[0]);
     setSelectedFile(event.target.files[0]);
     setPreviewURL(URL.createObjectURL(event.target.files[0]));
   };
 
-  /*const handleUpload = () => {
-    if (selectedFile) {
-      const formData = new FormData();
-      formData.append('image', selectedFile);
-
-      // Perform an HTTP request to upload the image using formData
-      // For example, using fetch
-      fetch('upload-url', {
-        method: 'POST',
-        body: formData,
-      })
-      .then((response) => {
-        // Handle response
-      })
-      .catch((error) => {
-        // Handle error
-      });
-    
-    }
-    navigate('/addticket')
-    
-  };*/
+  
 
   const handleUpload = async () => {
     try {
       if (selectedFile && eventId) {
         const formData = new FormData();
         formData.append('image', selectedFile);
-        formData.append('eventId', eventId); // Add eventId to formData
-
-        // Perform an HTTP request to upload the image and event ID using formData
+        formData.append('eventId', eventId); 
+  
         const response = await fetch('http://localhost:3500/eventimages', {
           method: 'POST',
           body: formData,

@@ -1,10 +1,11 @@
 import React, { useState, useEffect } from 'react';
-import { Grid, Paper, Typography } from '@mui/material';
+import {Card, Grid, Paper, Typography } from '@mui/material';
 import { AccessTime } from '@mui/icons-material';
 import { Link } from 'react-router-dom'; 
+import EventImage from './eventImage';
 const DEvents = () => {
   const [events, setEvents] = useState([]);
-
+  
   useEffect(() => {
     // Fetch all events
     const fetchEvents = async () => {
@@ -28,22 +29,30 @@ const DEvents = () => {
 
   return (
     <div style={{ padding: '20px', fontFamily: 'Poppins', marginTop:'100px'}}>
-      <Typography style={{marginleft:'100px'}} variant='h3' gutterBottom fontFamily="Poppins"> Events You May like</Typography>
-      <Grid container spacing={3} style={{backgroundColor:"#1B4242"}}>
+
+      <Typography style={{margin:'20px'}} variant='h3' gutterBottom fontFamily="Poppins"> Events You May like</Typography>
+
+      <Grid container spacing={3} style={{margin:'10px'}}>
         {limitedEvents.map(event => (
-          <Grid item xs={12} sm={4} key={event._id}>
-            ;
+          <Grid item xs={12} sm={4} key={event._id} spacing={1}>
+            
              <Link to={`/event/${event._id}`} style={{ textDecoration: 'none' }}> {/* Wrap Paper with Link */}
-            <Paper style={{ textAlign: 'center', paddingBottom: "20px", boxShadow: "rgba(0, 0, 0, 0.1) 0px 1px 3px 0px, rgba(0, 0, 0, 0.06) 0px 1px 2px 0px" }}>
-              <Typography variant="h6" gutterBottom>{event.name}</Typography>
-              <Typography variant="body1">{event.startDate}</Typography>
-              <Typography variant="body1">{event.startTime} - {event.endTime}</Typography>
-              <Typography variant="body1">{event.selectedLocation}</Typography>
-              <div style={{ display: 'flex', alignItems: 'center' }}>
-                <AccessTime style={{ fontWeight: "bold" }} />
-                <Typography variant="body1" fontWeight="bold">{'${event.daysLeft}' } days left</Typography>
-              </div>
-            </Paper>
+              <Paper elevation={3}  style={{ textAlign: 'center',  backgroundColor: 'rgba(252, 255, 255, 0.5)' }}> 
+ 
+                <Typography variant="h6" gutterBottom>{event.name}</Typography>
+              
+                <Typography variant="body1">{event.selectedLocation}</Typography>
+                 <Card style={{ height: '100%', display: 'flex', flexDirection: 'column'}}>
+                   <EventImage eventId={101}/>     {  /*change to 101-> event._id */}
+                   <div style={{ display: 'flex', alignItems: 'center' }}>
+                       <AccessTime style={{ fontWeight: "bold" }} />
+                       <Typography variant="body1" fontWeight="bold">
+                           {Math.floor((new Date(event.startDate) - new Date()) / (1000 * 60 * 60 * 24))} days left
+                       </Typography>
+                   
+                   </div>
+                  </Card>  
+             </Paper>
             </Link>
           </Grid>
         ))}

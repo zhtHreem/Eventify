@@ -13,7 +13,7 @@ import Typography from '@mui/material/Typography';
 import Container from '@mui/material/Container';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 import AppAppBar from './appbar';
-
+import { useNavigate } from 'react-router-dom'; 
 const defaultTheme = createTheme();
 
 export default function SignUp() {
@@ -26,7 +26,7 @@ export default function SignUp() {
   });
 
   const [error, setError] = useState('');
-
+  const navigate = useNavigate(); 
   const handleSubmit = async (event) => {
     event.preventDefault();
     
@@ -51,6 +51,7 @@ export default function SignUp() {
 
       const data = await response.json();
       console.log('User created successfully:', data);
+      navigate('/login');
       setError(''); // Reset error state
     } catch (error) {
       console.error('Error creating user:', error);

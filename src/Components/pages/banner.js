@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import ProgressBar from '../progressbar';
 import { useLocation } from 'react-router-dom';
 import AddImage from '../addImage';
+
 import ProgressBar_2 from '../progressBar_2';
 import { Container,Typography } from '@mui/material';
 
@@ -33,7 +34,7 @@ const Banner= () =>{
          
          <ProgressBar_2  progressValue={40}  />
          {/* <ProgressBar progress={progress} handleProgressChange={handleProgressChange} prev='/'   next={{ pathname: '/addticket' }}/> */}
-       <AddImage eventId={eventId}/>
+       <AddImage  eventId={eventId}/>
          
   {/* Add more JSX components or elements as needed */}
   

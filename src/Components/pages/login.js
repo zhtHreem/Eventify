@@ -15,7 +15,7 @@ import { createTheme, ThemeProvider } from '@mui/material/styles';
 import { useNavigate } from 'react-router-dom'; // Import useNavigate hook
 
 function Login() {
-  const navigate = useNavigate(); // Initialize useNavigate hook
+  const navigate = useNavigate(); 
   const [error, setError] = useState('');
 
   const handleSubmit = async (event) => {
@@ -51,7 +51,7 @@ function Login() {
      // console.log('Login successful:', response.data);
 
       //localStorage.setItem('user', JSON.stringify(response.data.user));
-      navigate('/homecomp'); // Navigate to the dashboard or home page on successful login
+      navigate('/'); // Navigate to the dashboard or home page on successful login
     } catch (error) {
       console.error('Error during authentication:', error);
       setError('Authentication failed. Please check your credentials and try again.');

@@ -21,7 +21,7 @@ function Copyright() {
   return (
     <Typography variant="body2" color="text.secondary" mt={1}>
       {'Copyright © '}
-      <Link href="https://mui.com/">Sitemark&nbsp;</Link>
+      <Link href="https://mui.com/">Eventify&nbsp;</Link>
       {new Date().getFullYear()}
     </Typography>
   );
@@ -37,6 +37,7 @@ export default function Footer() {
         gap: { xs: 4, sm: 8 },
         py: { xs: 8, sm: 10 },
         textAlign: { sm: 'center', md: 'left' },
+        
       }}
     >
       <Box
@@ -59,10 +60,10 @@ export default function Footer() {
             <Box sx={{ ml: '-15px' }}>
               <img
                 src={
-                  'https://assets-global.website-files.com/61ed56ae9da9fd7e0ef0a967/61f12e6faf73568658154dae_SitemarkDefault.svg'
+                  require('../images/logo.jpg')
                 }
                 style={logoStyle}
-                alt="logo of sitemark"
+                alt="logo of eventify"
               />
             </Box>
             <Typography variant="body2" fontWeight={600} gutterBottom>
@@ -191,7 +192,7 @@ export default function Footer() {
         >
           <IconButton
             color="inherit"
-            href="https://github.com/mui"
+            href="#"
             aria-label="GitHub"
             sx={{ alignSelf: 'center' }}
           >
@@ -199,7 +200,7 @@ export default function Footer() {
           </IconButton>
           <IconButton
             color="inherit"
-            href="https://twitter.com/MaterialUI"
+            href="#"
             aria-label="X"
             sx={{ alignSelf: 'center' }}
           >
@@ -207,7 +208,7 @@ export default function Footer() {
           </IconButton>
           <IconButton
             color="inherit"
-            href="https://www.linkedin.com/company/mui/"
+            href="#"
             aria-label="LinkedIn"
             sx={{ alignSelf: 'center' }}
           >

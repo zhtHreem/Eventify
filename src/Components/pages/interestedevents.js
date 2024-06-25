@@ -7,6 +7,9 @@ import { useSearchParams } from 'react-router-dom'
 import { Link } from 'react-router-dom'; 
 import AppAppBar from '../appbar';
 import Footer from '../Footer';
+
+
+
 const InterestedEvents = () => {
 const location = useLocation();
 const { events } = location.state;
