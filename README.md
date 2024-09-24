@@ -10,7 +10,7 @@ Welcome to **Eventify**, your ultimate platform for discovering, creating, and m
 3. **Search Events by Category**: Users can search events based on categories such as Music, Sports, Workshops, Conferences, and more, to find events relevant to their interests.
 4. **Ticket Purchase**: A built-in system allows users to buy tickets for events, providing a seamless experience from event discovery to ticket acquisition.
 5. **User Authentication**: Secure user registration and login functionality.
-6. **Event Dashboard**: Organizers can view, edit, or delete their events from a personal dashboard.
+
 
 ## Installation (for local development)
 
