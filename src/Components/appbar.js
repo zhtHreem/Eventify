@@ -1,34 +1,46 @@
 import * as React from 'react';
 import { useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import Box from '@mui/material/Box';
 import AppBar from '@mui/material/AppBar';
 import Toolbar from '@mui/material/Toolbar';
 import Button from '@mui/material/Button';
 import Container from '@mui/material/Container';
-import Divider from '@mui/material/Divider';
-import Typography from '@mui/material/Typography';
-import MenuItem from '@mui/material/MenuItem';
 import Drawer from '@mui/material/Drawer';
 import MenuIcon from '@mui/icons-material/Menu';
+import Typography from '@mui/material/Typography';
+import Divider from '@mui/material/Divider';
+import IconButton from '@mui/material/IconButton';
+import { useTheme } from '@mui/material/styles';
 import ToggleColorMode from './ToggleColorMode';
 import AutocompleteHint from './AutocompleteHint';
-import CreateNewEvent from './CreateNewEvent/CreateNewEvent';
-import { useNavigate } from 'react-router-dom';
-//import { useHistory } from 'react-router-dom';
 
-
-const logoStyle = {
-  width: '140px',
-  height: 'auto',
-  cursor: 'pointer',
+// Define custom font styles
+const fontStyles = {
+  button: {
+    fontFamily: '"Roboto", "Helvetica", "Arial", sans-serif',
+    fontWeight: 600,
+    textTransform: 'none',
+    color: 'black', // Set font color to black
+  },
+  logo: {
+    width: '120px',
+    height: 'auto',
+    cursor: 'pointer',
+  },
+  menuItem: {
+    fontFamily: '"Roboto", "Helvetica", "Arial", sans-serif',
+    fontWeight: 500,
+    color: 'black', // Set font color to black
+  },
 };
 
 function AppAppBar({ mode = 'light', toggleColorMode = () => {} }) {
-  const [open, setOpen] = React.useState(false);
+  const [open, setOpen] = useState(false);
   const [user, setUser] = useState(null);
   const navigate = useNavigate();
+  const theme = useTheme();
 
   useEffect(() => {
     const storedUser = JSON.parse(localStorage.getItem("user"));
@@ -64,151 +76,67 @@ function AppAppBar({ mode = 'light', toggleColorMode = () => {} }) {
   };
 
   return (
-    <div>
-      <AppBar
-        position="fixed"
-        sx={{
-          boxShadow: 0,
-          bgcolor: 'transparent',
-          backgroundImage: 'none',
-          mt: 2,
-        }}
-      >
-        <Container maxWidth="lg">
-          <Toolbar
-            variant="regular"
-            sx={(theme) => ({
-              display: 'flex',
-              alignItems: 'center',
-              justifyContent: 'space-between',
-              flexShrink: 0,
-              borderRadius: '999px',
-              bgcolor:
-                theme.palette.mode === 'light'
-                  ? 'rgba(255, 255, 255, 0.4)'
-                  : 'rgba(0, 0, 0, 0.4)',
-              backdropFilter: 'blur(24px)',
-              maxHeight: 40,
-              border: '1px solid',
-              borderColor: 'divider',
-              boxShadow:
-                theme.palette.mode === 'light'
-                  ? '0 0 1px rgba(85, 166, 246, 0.1), 1px 1.5px 2px -1px rgba(85, 166, 246, 0.15), 4px 4px 12px -2.5px rgba(85, 166, 246, 0.15)'
-                  : '0 0 1px rgba(2, 31, 59, 0.7), 1px 1.5px 2px -1px rgba(2, 31, 59, 0.65), 4px 4px 12px -2.5px rgba(2, 31, 59, 0.65)',
-
-            })}
-          >
-            <Box
-              sx={{
-                flexGrow: 1,
-                display: 'flex',
-                alignItems: 'center',
-                ml: '-18px',
-                px: 0,
-              }}
-            >
+    <AppBar position="fixed" sx={{ boxShadow: 0, backgroundColor: theme.palette.background.paper, backdropFilter: 'blur(6px)', borderBottom: `1px solid ${theme.palette.divider}` }}>
+      <Container maxWidth="lg">
+        <Toolbar sx={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
+          <Box sx={{ display: 'flex', alignItems: 'center' }}>
+            <Link to="/">
               <img
-                src={
-                  require('../images/logo.jpg')
-                }
-                style={{logoStyle, height:"30px"}}
-                alt="logo of eventify"
+                src={require('../images/logo.jpg')}
+                alt="logo"
+                style={fontStyles.logo}
               />
-              <Box sx={{ display: { xs: 'none', md: 'flex' } }}>
-              <MenuItem
-                  component={Link} // Use Link as the component
-                  to="/"        // Specify the path to the interest page
-                  sx={{ py: '6px', px: '12px' }}
-                >
-                  <Typography variant="body2" color="text.primary">
-                    Home
-                  </Typography>
-                </MenuItem>
-                <MenuItem onClick={() => scrollToSection('testimonials')} sx={{ py: '6px', px: '12px' }}>
-                  <Typography variant="body2" color="text.primary">Eventss</Typography>
-                </MenuItem>
+            </Link>
+          </Box>
 
-                <MenuItem component={Link} to="/AboutUs" sx={{ py: '6px', px: '12px' }}>
-                  <Typography variant="body2" color="text.primary">About</Typography>
+          <Box sx={{ display: { xs: 'none', md: 'flex' }, flexGrow: 1, alignItems: 'center' }}>
+            <Button component={Link} to="/" sx={fontStyles.button}>Home</Button>
+            <Button component={Link} to="/AboutUs" sx={fontStyles.button}>About</Button>
+            <Button component={Link} to="/createevent" sx={fontStyles.button}>Create Event</Button>
+            <Button component={Link} to="/interestPage" sx={fontStyles.button}>Interested Events</Button>
+            <AutocompleteHint />
+          </Box>
 
-                </MenuItem>
+          <Box sx={{ display: { xs: 'none', md: 'flex' }, alignItems: 'center' }}>
+            <ToggleColorMode mode={mode} toggleColorMode={toggleColorMode} />
+            {user ? (
+              <Button color="primary" variant="contained" sx={fontStyles.button} onClick={handleLogout}>Log out</Button>
+            ) : (
+              <>
+                <Button color="primary" variant="text" sx={fontStyles.button} component={Link} to="/login">Sign in</Button>
+                <Button color="primary" variant="contained" sx={fontStyles.button} component={Link} to="/signup">Sign up</Button>
+              </>
+            )}
+          </Box>
 
-                <MenuItem
-                  component={Link} // Use Link as the component
-                  to="/createevent"        // Specify the path to the interest page
-                  sx={{ py: '6px', px: '12px' }}
-                >
-                  <Typography variant="body2" color="text.primary">
-                    Create Event
-                  </Typography>
-                </MenuItem>
-                
-
-                <MenuItem
-                  component={Link} // Use Link as the component
-                  to="/interestPage"        // Specify the path to the interest page
-                  sx={{ py: '6px', px: '12px' }}
-                >
-                  <Typography variant="body2" color="text.primary">
-                    Interested Events
-                  </Typography>
-                </MenuItem>
-                <MenuItem><AutocompleteHint /></MenuItem>
+          <Box sx={{ display: { md: 'none' } }}>
+            <IconButton color="inherit" aria-label="menu" onClick={toggleDrawer(true)}>
+              <MenuIcon />
+            </IconButton>
+            <Drawer anchor="right" open={open} onClose={toggleDrawer(false)}>
+              <Box sx={{ width: 250, p: 2 }}>
+                <ToggleColorMode mode={mode} toggleColorMode={toggleColorMode} />
+                <Divider />
+                <Button component={Link} to="/" sx={{ width: '100%', ...fontStyles.button }} onClick={() => setOpen(false)}>Home</Button>
+                <Button onClick={() => scrollToSection('testimonials')} sx={{ width: '100%', ...fontStyles.button }} onClick={() => setOpen(false)}>Events</Button>
+                <Button component={Link} to="/AboutUs" sx={{ width: '100%', ...fontStyles.button }} onClick={() => setOpen(false)}>About</Button>
+                <Button component={Link} to="/createevent" sx={{ width: '100%', ...fontStyles.button }} onClick={() => setOpen(false)}>Create Event</Button>
+                <Button component={Link} to="/interestPage" sx={{ width: '100%', ...fontStyles.button }} onClick={() => setOpen(false)}>Interested Events</Button>
+                <Divider />
+                {user ? (
+                  <Button variant="contained" fullWidth  sx={{color:"white",backgroundColor:"orangered"}} onClick={handleLogout}>Log out</Button>
+                ) : (
+                  <>
+                    <Button color="primary" variant="contained" fullWidth sx={fontStyles.button} component={Link} to="/signup">Sign up</Button>
+                    <Button color="primary" variant="outlined" fullWidth sx={fontStyles.button} component={Link} to="/login">Sign in</Button>
+                  </>
+                )}
               </Box>
-            </Box>
-            <Box
-              sx={{
-                display: { xs: 'none', md: 'flex' },
-                gap: 0.5,
-                alignItems: 'center',
-              }}
-            >
-              <ToggleColorMode mode={mode} toggleColorMode={toggleColorMode} />
-              {user ? (
-                <Button color="primary" variant="contained" size="small" onClick={handleLogout}>Log out</Button>
-              ) : (
-                <>
-                  <Button color="primary" variant="text" size="small" component={Link} to="/login">Sign in</Button>
-                  <Button color="primary" variant="contained" size="small" component={Link} to="/signup">Sign up</Button>
-                </>
-              )}
-            </Box>
-            <Box sx={{ display: { sm: '', md: 'none' } }}>
-              <Button variant="text" color="primary" aria-label="menu" onClick={toggleDrawer(true)} sx={{ minWidth: '30px', p: '4px' }}>
-                <MenuIcon />
-              </Button>
-              <Drawer anchor="right" open={open} onClose={toggleDrawer(false)}>
-                <Box sx={{ minWidth: '60dvw', p: 2, backgroundColor: 'background.paper', flexGrow: 1 }}>
-                  <Box sx={{ display: 'flex', flexDirection: 'column', alignItems: 'end', flexGrow: 1 }}>
-                    <ToggleColorMode mode={mode} toggleColorMode={toggleColorMode} />
-                  </Box>
-                  <MenuItem onClick={() => scrollToSection('features')}>Features</MenuItem>
-                  <MenuItem onClick={() => scrollToSection('testimonials')}>Testimonials</MenuItem>
-                  <MenuItem onClick={() => scrollToSection('highlights')}>Highlights</MenuItem>
-                  <MenuItem onClick={() => scrollToSection('pricing')}>Pricing</MenuItem>
-                  <MenuItem
-                  component={Link} // Use Link as the component
-                  to="/interestPage"        // Specify the path to the interest page
-                  sx={{ py: '6px', px: '12px' }}
-                >
-                  <Typography variant="body2" color="text.primary">
-                    Interested Events
-                  </Typography>
-                </MenuItem>
-                  <Divider />
-                  <MenuItem>
-                    <Button color="primary" variant="contained" component="a" href="/material-ui/getting-started/templates/sign-up/" target="_blank" sx={{ width: '100%' }}>Sign up</Button>
-                  </MenuItem>
-                  <MenuItem>
-                    <Button color="primary" variant="outlined" component="a" href="/material-ui/getting-started/templates/sign-in/" target="_blank" sx={{ width: '100%' }}>Sign in</Button>
-                  </MenuItem>
-                </Box>
-              </Drawer>
-            </Box>
-          </Toolbar>
-        </Container>
-      </AppBar>
-    </div>
+            </Drawer>
+          </Box>
+        </Toolbar>
+      </Container>
+    </AppBar>
   );
 }
 
