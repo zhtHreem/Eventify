@@ -20,17 +20,13 @@ To run **Eventify** locally, follow the steps below:
   ```bash
    git clone https://github.com/zhtHreem/Eventify.git
   ```
-2.To use the local API during development
- replace https://fam-feast-api.vercel.app with
-  ```bash
-     http://localhost:3500
-   ```
-3.Install dependencies:
+
+2.Install dependencies:
    ```bash
     npm install
     npm start
    ```
-4.Run backend server
+3.Run backend server
   ```bash
    cd backend
    nodemon server.js
