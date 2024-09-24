@@ -1,70 +1,45 @@
-# Getting Started with Create React App
+# Eventify - Event Management Platform
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+Welcome to **Eventify**, your ultimate platform for discovering, creating, and managing events like never before. Whether you're an event organizer looking to reach a wider audience or an enthusiast searching for the next big event, Eventify provides a seamless and exciting experience for all.
 
-## Available Scripts
 
-In the project directory, you can run:
+## Project Features
 
-### `npm start`
+1. **Event Creation**: Event organizers can create and publish events with details like date, location, description, and ticket options.
+2. **View Upcoming Events**: Users can browse upcoming events through a dedicated section, ensuring they stay informed about the latest happenings.
+3. **Search Events by Category**: Users can search events based on categories such as Music, Sports, Workshops, Conferences, and more, to find events relevant to their interests.
+4. **Ticket Purchase**: A built-in system allows users to buy tickets for events, providing a seamless experience from event discovery to ticket acquisition.
+5. **User Authentication**: Secure user registration and login functionality.
+6. **Event Dashboard**: Organizers can view, edit, or delete their events from a personal dashboard.
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+## Installation (for local development)
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+To run **Eventify** locally, follow the steps below:
 
-### `npm test`
+1. Clone the repository:
+  ```bash
+   git clone https://github.com/zhtHreem/Eventify.git
+  ```
+2.To use the local API during development
+ replace https://fam-feast-api.vercel.app with
+  ```bash
+     http://localhost:3500
+   ```
+3.Install dependencies:
+   ```bash
+    npm install
+    npm start
+   ```
+4.Run backend server
+  ```bash
+   cd backend
+   nodemon server.js
+  ```
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+## Technologies Used:
+- **Frontend**: React, Material-UI
+- **Backend**: Node.js, Express
+- **Database**: MongoDB
 
-### `npm run build`
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
-
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
-
-### `npm run eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
-
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
-
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
