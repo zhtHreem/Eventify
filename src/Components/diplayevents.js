@@ -28,7 +28,7 @@ const DEvents = () => {
   const limitedEvents = events.slice(0, 6);
 
   return (
-    <div style={{ padding: '20px', fontFamily: 'Poppins', marginTop:'100px'}}>
+    <div style={{ padding: '20px', fontFamily: 'Poppins', marginTop:'100px',marginRight:100}}>
 
       <Typography style={{margin:'20px'}} variant='h3' gutterBottom fontFamily="Poppins"> Events You May like</Typography>
 
